@@ -26,18 +26,10 @@ RUN apt-get install libgdal1-dev -y
 
 
 
-# Build Zoo WPS  from source -------------------------------------------------------------------------------------#
 
-
-RUN cd /usr/local/src && \
-   svn checkout http://www.zoo-project.org/svn/trunk zoo && \
-   cd /usr/local/src/zoo/thirds/cgic206 && \
-   sed "s:lib64:lib:g" -i Makefile && \
-   cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
-   autoconf 
    
 # Test Location of xslt -----------------------------------------------------------------------------------------#
 
-RUN  echo dpkg -L packagename libxslt   
+CMD  echo dpkg -L packagename libxslt   
    
    

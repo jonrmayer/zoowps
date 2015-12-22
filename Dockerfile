@@ -37,7 +37,9 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   
 
+RUN mkdir /myvol
 
+VOLUME /myvol
    
 # Test Location of xslt -----------------------------------------------------------------------------------------#
 

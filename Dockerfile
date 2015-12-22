@@ -27,16 +27,19 @@ RUN apt-get install libgdal1-dev
 
 
 RUN cd /usr/local/src && \
-   svn checkout http://www.zoo-project.org/svn/trunk zoo
+   svn checkout http://www.zoo-project.org/svn/trunk zoo && \
    cd /usr/local/src/zoo/thirds/cgic206 && \
-    ./configure && make -j$PROCESSORS && make install && ldconfig && \
-    cd /usr/local/src/gdal-1.11.1 && \
-    rm -rf /usr/local/src/geos-3.4.2 && \
-    ./configure --with-python && \
-    make -j$PROCESSORS && make install && ldconfig && \
-    apt-get install -y python-gdal && \
-    cd /usr/local/src && \
-    rm -rf /usr/local/src/gdal-1.11.1
+   sed "s:lib64:lib:g" -i Makefile && \
+   cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
+   autoconf && \
+   ./configure --with-python --with-pyvers=2.7 --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config && \
+   make && \
+   make install 
+# Build Zoo WPS  from source -------------------------------------------------------------------------------------#   
+   cp main.cfg /usr/lib/cgi-bin && \
+   cp zoo_loader.cgi /usr/lib/cgi-bin && \
+   chown -R www-data:www-data /usr/lib/cgi-bin
+  
 
 # Install PostGIS -----------------------------------------------------------------------------------------------------#
 RUN apt-get -y -q install postgresql-9.3-postgis-2.1

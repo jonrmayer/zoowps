@@ -23,6 +23,9 @@ RUN apt-get update
 RUN apt-get install libgdal1-dev -y
 
 
+
+
+
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#
 
 
@@ -32,13 +35,9 @@ RUN cd /usr/local/src && \
    sed "s:lib64:lib:g" -i Makefile && \
    cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    autoconf 
-RUN ./configure --with-python --with-pyvers=2.7 --with-js=/usr/  && \
-   make && \
-   make install 
-# Build Zoo WPS  from source -------------------------------------------------------------------------------------#   
-RUN   cp main.cfg /usr/lib/cgi-bin && \
-   cp zoo_loader.cgi /usr/lib/cgi-bin && \
-   chown -R www-data:www-data /usr/lib/cgi-bin
-  
+   
+# Test Location of xslt -----------------------------------------------------------------------------------------#
 
-
+RUN  echo dpkg -L packagename libxslt   
+   
+   

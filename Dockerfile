@@ -17,7 +17,8 @@ RUN cd /usr/local/src && \
    autoconf
 
 
-RUN ./configure --with-python --with-pyvers=2.7 --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config  && \
+RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
+   ./configure --with-python --with-pyvers=2.7 --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config  && \
    make && \
    make install 
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#   

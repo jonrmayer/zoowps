@@ -20,6 +20,7 @@ RUN cd /usr/local/src && \
    svn checkout http://www.zoo-project.org/svn/trunk zoo && \
    cd /usr/local/src/zoo/thirds/cgic206 && \
    sed "s:lib64:lib:g" -i Makefile && \
+   make && \
    cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    autoconf
 

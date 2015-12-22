@@ -31,8 +31,8 @@ RUN cd /usr/local/src && \
    cd /usr/local/src/zoo/thirds/cgic206 && \
    sed "s:lib64:lib:g" -i Makefile && \
    cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
-   autoconf && \
-   ./configure --with-python --with-pyvers=2.7 --with-js=/usr/  && \
+   autoconf 
+RUN ./configure --with-python --with-pyvers=2.7 --with-js=/usr/  && \
    make && \
    make install 
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#   

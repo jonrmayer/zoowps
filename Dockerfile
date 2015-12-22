@@ -7,7 +7,7 @@ FROM ubuntugis
 
 MAINTAINER Jonathan Mayer jonathan.mayer@ecountability.co.uk
 
-
+RUN apt-get install libproj-dev -y
 
 RUN cd /usr/local/src && \
    svn checkout http://www.zoo-project.org/svn/trunk zoo && \

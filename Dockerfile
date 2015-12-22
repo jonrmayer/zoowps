@@ -30,6 +30,6 @@ RUN apt-get install libgdal1-dev -y
    
 # Test Location of xslt -----------------------------------------------------------------------------------------#
 
-CMD  echo dpkg -L packagename libxslt   
+#CMD  echo dpkg -L packagename libxslt   
    
    

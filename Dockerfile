@@ -19,7 +19,8 @@ RUN cd /usr/local/src && \
 
 RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    ./configure --with-python --with-pyvers=2.7 --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config  && \
-   make && \
+   make
+RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    make install 
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#   
 RUN   cp main.cfg /usr/lib/cgi-bin && \

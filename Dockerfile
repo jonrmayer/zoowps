@@ -16,7 +16,7 @@ curl openssl autoconf apache2 python-software-properties subversion \
 libmozjs185-dev python-dev build-essential
 
 # Add UbuntuGIS repository and update - Step 2  ----------------------------------------------------------------------------------------#
-RUN add-apt-repository ppa:ubuntugis/ppa
+RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 RUN apt-get update
 
 # Install GDAL - Step 3  ----------------------------------------------------------------------------------------#

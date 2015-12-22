@@ -31,7 +31,8 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
 RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    make install 
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#   
-RUN   cp main.cfg /usr/lib/cgi-bin && \
+RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
+    cp main.cfg /usr/lib/cgi-bin && \
    cp zoo_loader.cgi /usr/lib/cgi-bin && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   

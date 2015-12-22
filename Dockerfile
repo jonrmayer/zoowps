@@ -20,7 +20,7 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 RUN apt-get update
 
 # Install GDAL - Step 3  ----------------------------------------------------------------------------------------#
-RUN apt-get install libgdal1-dev
+RUN apt-get install libgdal1-dev -y
 
 
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#

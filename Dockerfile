@@ -32,7 +32,7 @@ RUN cd /usr/local/src && \
    sed "s:lib64:lib:g" -i Makefile && \
    cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    autoconf && \
-   ./configure --with-python --with-pyvers=2.7 --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config && \
+   ./configure --with-python --with-pyvers=2.7 --with-js=/usr/  && \
    make && \
    make install 
 # Build Zoo WPS  from source -------------------------------------------------------------------------------------#   

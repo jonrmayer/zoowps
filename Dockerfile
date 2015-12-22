@@ -10,28 +10,25 @@ MAINTAINER Jonathan Mayer jonathan.mayer@ecountability.co.uk
 # Update the Ubuntu repository indexes -----------------------------------------------------------------#
 RUN apt-get update && apt-get upgrade -y
 
-# Install dependencies ------------------------------------------------------------------------------------------------#
-RUN apt-get install -y build-essential python-all-dev git vim python-dev python-pip\
-    python-software-properties software-properties-common g++ gcc make libssl-dev libreadline6-dev\
-    libaio-dev libbz2-dev zlib1g-dev libjpeg62-dev libpcre3-dev libexpat1-dev libxml2 libxml2-dev\
-    libjson0 libjson0-dev liblzma-dev libevent-dev wget zip unzip supervisor sudo\
-    binutils libproj-dev libgeoip1 libgtk2.0 xsltproc docbook-xsl docbook-mathml
+# Install dependencies - Step 1  ------------------------------------------------------------------------------------------------#
+RUN apt-get install -y flex bison libfcgi-dev libxml2 libxml2-dev\
+curl openssl autoconf apache2 python-software-properties subversion\
+libmozjs185-dev python-dev build-essential
 
-# Install PostgreSQL libraries ----------------------------------------------------------------------------------------#
-RUN apt-get install -y postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 libpq-dev postgresql-server-dev-9.3
+# Add UbuntuGIS repository and update - Step 2  ----------------------------------------------------------------------------------------#
+RUN add-apt-repository ppa:ubuntugis/ppa
+RUN apt-get update
 
-# Build GDAL and GEOS from source -------------------------------------------------------------------------------------#
-ENV PROCESSORS 4
+# Install GDAL - Step 3  ----------------------------------------------------------------------------------------#
+RUN apt-get install libgdal1-dev
+
+
+# Build Zoo WPS  from source -------------------------------------------------------------------------------------#
+
 
 RUN cd /usr/local/src && \
-    wget http://download.osgeo.org/gdal/1.11.1/gdal-1.11.1.tar.gz && \
-    tar xfz gdal-1.11.1.tar.gz && \
-    wget http://download.osgeo.org/geos/geos-3.4.2.tar.bz2 && \
-    bunzip2 geos-3.4.2.tar.bz2 && \
-    tar xvf geos-3.4.2.tar && \
-    rm geos-3.4.2.tar && \
-    rm gdal-1.11.1.tar.gz && \
-    cd /usr/local/src/geos-3.4.2 && \
+   svn checkout http://www.zoo-project.org/svn/trunk zoo
+   cd /usr/local/src/zoo/thirds/cgic206 && \
     ./configure && make -j$PROCESSORS && make install && ldconfig && \
     cd /usr/local/src/gdal-1.11.1 && \
     rm -rf /usr/local/src/geos-3.4.2 && \

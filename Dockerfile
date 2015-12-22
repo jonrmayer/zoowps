@@ -14,7 +14,7 @@ libxml2 libxml2-dev curl openssl autoconf apache2 \
 python-software-properties subversion git libmozjs185-dev \
 python-dev build-essential libfreetype6-dev libproj-dev libgdal1-dev \
 libcairo2-dev apache2-dev libxslt1-dev python-cheetah cssmin \
-python-psycopg2 python-gdal python-libxslt1  cmake gdal-bin libapache2-mod-fcgid ghostscript xvfb
+python-psycopg2 python-gdal python-libxslt1  cmake gdal-bin libapache2-mod-fcgid ghostscript xvfb -y
 
 RUN cd /usr/local/src && \
    svn checkout http://www.zoo-project.org/svn/trunk zoo && \

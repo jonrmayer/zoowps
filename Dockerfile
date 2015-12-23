@@ -40,6 +40,8 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
 RUN mkdir /myvol
 
 VOLUME /myvol
+
+EXPOSE 80
    
 # Test Location of xslt -----------------------------------------------------------------------------------------#
 

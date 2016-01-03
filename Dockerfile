@@ -61,6 +61,7 @@ COPY zoowpsconfig/apache2.conf /etc/apache2/apache2.conf
 RUN mkdir /var/www/html/temp
 RUN mkdir /var/www/html/zoo
 
+ENV investcode 002
 COPY investcode/* /usr/lib/cgi-bin/
 
 

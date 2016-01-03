@@ -33,7 +33,7 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    cp zoo_loader.cgi /usr/lib/cgi-bin && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   
-  
+ENV updated-adds-on 001 
 RUN git clone https://github.com/jonrmayer/natcap_python_src.git /usr/local/natcap
 
 RUN ln -s /usr/local/natcap/natcap/invest /usr/local/lib/python2.7/dist-packages/natcap

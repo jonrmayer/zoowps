@@ -60,6 +60,7 @@ COPY zoowpsconfig/apache2.conf /etc/apache2/apache2.conf
 
 RUN mkdir /var/www/html/temp
 RUN mkdir /var/www/html/zoo
+RUN ln -s investcode /usr/lib/cgi-bin/
 
 COPY zoowpsconfig/main.cfg /usr/lib/cgi-bin/main.cfg
 COPY zoowpsconfig/.htaccess /var/www/html/zoo/.htaccess

@@ -34,6 +34,8 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
 RUN mkdir /etc/service/apache2
 ADD apache2.sh /etc/service/apache2/run
 
+RUN chmod 755 /etc/service/apache2/*
+
 # Add Apache Environment variables
 RUN echo www-data > /etc/container_environment/APACHE_RUN_USER
 RUN echo www-data > /etc/container_environment/APACHE_RUN_GROUP

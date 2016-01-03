@@ -7,6 +7,9 @@ FROM ubuntugis
 
 MAINTAINER Jonathan Mayer jonathan.mayer@ecountability.co.uk
 
+ENV HOME /root
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN cd /usr/local/src && \
    svn checkout http://www.zoo-project.org/svn/trunk zoo && \
    cd /usr/local/src/zoo/thirds/cgic206 && \

@@ -11,37 +11,21 @@ statusSupported = true
  </MetaData>
  <DataInputs>
   [a]
-  Title = Polygon to compute boundary
-  Abstract = URI to a set of GML that describes the polygon.
-  minOccurs = 0
-  maxOccurs = 1
-  <MetaData>
-      Test = My test
-  </MetaData>
-   <ComplexData>
-  <Default>
-   mimeType = application/json
-    encoding = UTF-8
-    </Default>
- <Supported>
-   mimeType = application/json
-    encoding = UTF-8
- </Supported>
-</ComplexData>
+   Title = Input string
+   Abstract = The string to insert in the hello message.
+   minOccurs = 1
+   maxOccurs = 1
+   <LiteralData>
+       dataType = string
+       <Default />
+   </LiteralData>
  </DataInputs>
  <DataOutputs>
- [Result]
- Title = The created geometry
- Abstract = The geometry containing the boundary of the geometry on which the method  was invoked.
- <MetaData>
-   Title = Result
- </MetaData>
- <ComplexData>
- <Default>
-  mimeType = application/json
-    encoding = UTF-8
-</Default>
-
-
- </ComplexData>
+  [Result]
+   Title = The resulting string
+   Abstract = The hello message containing the input string
+   <LiteralData>
+       dataType = string
+       <Default />
+   </LiteralData>
  </DataOutputs>

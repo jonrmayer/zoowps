@@ -45,10 +45,19 @@ RUN echo www-data > /etc/container_environment/APACHE_RUN_GROUP
 RUN echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR
 
 # Activate needed Apache modules 
-RUN a2enmod cgi
+RUN a2enmod cgi && a2enmod rewrite
 
+COPY zoowpsconfig/apache2.conf /etc/apache2/apache2.conf
 
+RUN mkdir /var/www/html/temp
+RUN mkdir /var/www/html/zoo
 
+COPY zoowpsconfig/main.cfg /usr/lib/cgi-bin/main.cfg
+COPY zoowpsconfig/.htaccess /var/www/html/zoo/.htaccess
+
+RUN chown -R www-data:www-data /var/www/html/temp
+RUN chown -R www-data:www-data /var/www/html/zoo
+RUN chown -R www-data:www-data /usr/lib/cgi-bin
 
 RUN mkdir /myvol
 

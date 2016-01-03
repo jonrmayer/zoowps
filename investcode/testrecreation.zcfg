@@ -1,0 +1,63 @@
+[testgeo_ms]
+ Title = Compute boundary.
+Abstract = Returns the boundary of the geometry on which the method is invoked.
+ processVersion = 1
+storeSupported = true
+statusSupported = true
+ serviceProvider = testgeo_ms
+ serviceType = Python
+ <MetaData>
+   title = Demo
+ </MetaData>
+ <DataInputs>
+  [InputPolygon]
+  Title = Polygon to compute boundary
+  Abstract = URI to a set of GML that describes the polygon.
+  minOccurs = 1
+  maxOccurs = 1
+  <MetaData>
+      Test = My test
+  </MetaData>
+   <ComplexData>
+  <Default>
+   mimeType = application/json
+    encoding = UTF-8
+    </Default>
+ <Supported>
+   mimeType = application/json
+    encoding = UTF-8
+ </Supported>
+</ComplexData>
+ </DataInputs>
+ <DataOutputs>
+ [Result]
+ Title = The created geometry
+ Abstract = The geometry containing the boundary of the geometry on which the method  was invoked.
+ <MetaData>
+   Title = Result
+ </MetaData>
+ <ComplexData>
+ <Default>
+  mimeType = application/json
+    encoding = UTF-8
+</Default>
+<Supported>
+ mimeType = image/png
+ useMapserver = true
+ asReference = true
+ msStyle = STYLE COLOR 125 0 105 OUTLINECOLOR 0 0 0 WIDTH 3 END
+</Supported>
+<Supported>
+ mimeType = image/tif
+ useMapserver = true
+ asReference = true
+ msStyle = STYLE COLOR 125 0 105 OUTLINECOLOR 0 0 0 WIDTH 3 END
+</Supported>
+<Supported>
+ mimeType = application/vnd.google-earth.kmz
+ useMapserver = true
+ asReference = true
+ msStyle = STYLE COLOR 125 0 105 OUTLINECOLOR 0 0 0 WIDTH 3 END
+</Supported>
+ </ComplexData>
+ </DataOutputs>

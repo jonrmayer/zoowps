@@ -36,7 +36,7 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
   
 RUN git clone https://github.com/jonrmayer/natcap_python_src.git /usr/local/natcap
 
-RUN ln -s /usr/local/natcap /usr/local/lib/python2.7/dist-packages/natcap
+RUN ln -s /usr/local/natcap/natcap/invest /usr/local/lib/python2.7/dist-packages/natcap
 
 
   

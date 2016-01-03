@@ -27,6 +27,20 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    cp zoo_loader.cgi /usr/lib/cgi-bin && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   
+# Add Apache/MapServer daemon
+RUN mkdir /etc/service/apache2
+ADD apache2.sh /etc/service/apache2/run
+
+# Add Apache Environment variables
+RUN echo www-data > /etc/container_environment/APACHE_RUN_USER
+RUN echo www-data > /etc/container_environment/APACHE_RUN_GROUP
+RUN echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR
+
+# Activate needed Apache modules 
+RUN a2enmod cgi
+
+
+
 
 RUN mkdir /myvol
 

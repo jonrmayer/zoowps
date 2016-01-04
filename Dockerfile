@@ -10,6 +10,14 @@ MAINTAINER Jonathan Mayer jonathan.mayer@ecountability.co.uk
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV updated-adds-on 003 
+RUN git clone https://github.com/jonrmayer/natcap_python_src.git /usr/local/natcap
+
+RUN ln -s /usr/local/natcap/natcap/invest /usr/local/lib/python2.7/dist-packages/natcap
+
+
+
+
 RUN cd /usr/local/src && \
    svn checkout http://www.zoo-project.org/svn/trunk zoo && \
    cd /usr/local/src/zoo/thirds/cgic206 && \
@@ -33,10 +41,7 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    cp zoo_loader.cgi /usr/lib/cgi-bin && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   
-ENV updated-adds-on 002 
-RUN git clone https://github.com/jonrmayer/natcap_python_src.git /usr/local/natcap
 
-RUN ln -s /usr/local/natcap/natcap/invest /usr/local/lib/python2.7/dist-packages/natcap
 
 
   

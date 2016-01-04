@@ -60,7 +60,7 @@ RUN echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR
 
 # Activate needed Apache modules 
 
-RUN  a2enmod fcgid && a2enmod cgid && rewrite
+RUN  a2enmod fcgid && a2enmod cgid && a2enmod rewrite
 
 
 COPY zoowpsconfig/apache2.conf /etc/apache2/apache2.conf

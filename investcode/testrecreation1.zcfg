@@ -1,0 +1,31 @@
+[testrecreation1]
+ Title = Compute boundary.
+Abstract = Returns the boundary of the geometry on which the method is invoked.
+ processVersion = 1
+storeSupported = true
+statusSupported = true
+ serviceProvider = testrecreation1
+ serviceType = Python
+ <MetaData>
+   title = Demo
+ </MetaData>
+ <DataInputs>
+  [a]
+   Title = Input string
+   Abstract = The string to insert in the hello message.
+   minOccurs = 1
+   maxOccurs = 1
+   <LiteralData>
+       dataType = string
+       <Default />
+   </LiteralData>
+ </DataInputs>
+ <DataOutputs>
+  [Result]
+   Title = The resulting string
+   Abstract = The hello message containing the input string
+   <LiteralData>
+       dataType = string
+       <Default />
+   </LiteralData>
+ </DataOutputs>

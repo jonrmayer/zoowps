@@ -10,6 +10,22 @@ MAINTAINER Jonathan Mayer jonathan.mayer@ecountability.co.uk
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
+
+#PHP -----------Build & Installation------------
+RUN cd /usr/local/src && \
+wget http://uk1.php.net/get/php-5.5.13.tar.gz/from/this/mirror -O php-5.5.13.tar.gz && \
+tar xvf php-5.5.13.tar.gz && \
+cd php-5.5.13 && \
+./configure --prefix=/usr --enable-embed --enable-maintainer-zts && \
+make
+
+
+RUN cd /usr/local/src && \
+make install && \
+ldconfig 
+
+#ZOO --------Buils & Installation---------------
+
 RUN cd /usr/local/src && \
    svn checkout http://www.zoo-project.org/svn/trunk zoo && \
    cd /usr/local/src/zoo/thirds/cgic206 && \
@@ -20,7 +36,7 @@ RUN cd /usr/local/src && \
 
 
 RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
-   ./configure --with-python --with-pyvers=2.7 --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config  && \
+   ./configure --with-python --with-pyvers=2.7 --with-php --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config  && \
    make
 RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    make install && \
@@ -33,14 +49,7 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    cp zoo_loader.cgi /usr/lib/cgi-bin && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   
-ENV updated-adds-on 002 
-RUN git clone https://github.com/jonrmayer/natcap_python_src.git /usr/local/natcap
 
-RUN ln -s /usr/local/natcap/natcap/invest /usr/local/lib/python2.7/dist-packages/natcap
-
-
-  
-  
   
 # Add Apache/MapServer daemon
 RUN mkdir /etc/service/apache2

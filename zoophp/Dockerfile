@@ -1,5 +1,5 @@
-# PostGIS 2.1.2
-# Ubuntu 14.04
+# PHP 
+# ZooWPS
 
 # CREDITS: Based on http://www.peterstratton.com/2014/04/how-to-install-postgis-2-dot-1-and-postgresql-9-dot-3-on-ubuntu-servers/
 
@@ -38,6 +38,7 @@ RUN cd /usr/local/src && \
 RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    ./configure --with-python --with-pyvers=2.7 --with-php --with-js=/usr/ --with-xsltconfig=/usr/bin/xslt-config  && \
    make
+   
 RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    make install && \
    ldconfig
@@ -49,6 +50,8 @@ RUN cd /usr/local/src/zoo/zoo-project/zoo-kernel && \
    cp zoo_loader.cgi /usr/lib/cgi-bin && \
    chown -R www-data:www-data /usr/lib/cgi-bin
   
+  
+ 
 
   
 # Add Apache/MapServer daemon
@@ -65,39 +68,45 @@ RUN echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR
 # Activate needed Apache modules 
 
 
+
+
+
+COPY zoophpconfig/apache2.conf /etc/apache2/apache2.conf
+COPY zoophpconfig/serve-cgi-bin.conf /etc/apache2/conf-available/serve-cgi-bin.conf
+
 RUN  a2enmod fcgid && a2enmod cgid && a2enmod rewrite
 
 
-COPY zoowpsconfig/apache2.conf /etc/apache2/apache2.conf
-COPY zoowpsconfig/serve-cgi-bin.conf /etc/apache2/conf-available/serve-cgi-bin.conf
 
 RUN mkdir /var/www/html/temp
 RUN mkdir /var/www/html/zoo
 RUN mkdir /var/www/cgi-bin
 
-COPY test/* /var/www/cgi-bin
+#COPY test/* /var/www/cgi-bin
+
+RUN cd /usr/local/src/zoo/zoo-project/zoo-services/hello-php/cgi-env/ && \
+    cp hello.php /var/www/cgi-bin && \
+   cp HelloPHP.zcfg /var/www/cgi-bin
 
 
-ENV investcode 002
 
 
-
-COPY investcode/* /var/www/cgi-bin/
-COPY zoowpsconfig/main.cfg /usr/lib/cgi-bin/main.cfg
+#COPY investcode/* /var/www/cgi-bin/
+#COPY zoowpsconfig/main.cfg /usr/lib/cgi-bin/main.cfg
 
 RUN cp /usr/local/src/zoo/zoo-project/zoo-kernel/zoo_loader.cgi /var/www/cgi-bin/zoo_loader.cgi
 
 
 #RUN ln -s investcode /usr/lib/cgi-bin/
 
-COPY zoowpsconfig/main.cfg /var/www/cgi-bin/main.cfg
+COPY zoophpconfig/main.cfg /var/www/cgi-bin/main.cfg
 
 
-COPY zoowpsconfig/.htaccess /var/www/html/zoo/.htaccess
+#COPY zoowpsconfig/.htaccess /var/www/html/zoo/.htaccess
 
 RUN chown -R www-data:www-data /var/www/html/temp
 RUN chown -R www-data:www-data /var/www/html/zoo
-RUN chown -R www-data:www-data /usr/lib/cgi-bin
+#RUN chown -R www-data:www-data /usr/lib/cgi-bin
 
 
 RUN chmod 755 /var/www/cgi-bin/*
@@ -110,6 +119,3 @@ VOLUME /myvol
 
 EXPOSE 80
    
-# Test Location of xslt -----------------------------------------------------------------------------------------#
-
-#CMD  echo dpkg -L packagename libxslt  

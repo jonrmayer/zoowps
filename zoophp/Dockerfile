@@ -84,6 +84,18 @@ RUN mkdir /var/www/cgi-bin
 
 #COPY test/* /var/www/cgi-bin
 
+# Testing DropBox integration -----------------
+
+RUN cd /usr/local/src && \
+wget https://www.dropbox.com/sh/im6k3in523shylt/AADtDIGJUTyGQK10Ku_BQQQPa?dl=1 -O zoophpsrc.zip && \
+unzip zoophpsrc.zip -d zoophpsrc 
+
+RUN cd /usr/local/src/zoophpsrc && \
+cp Dropbox_Hello.txt /var/www/cgi-bin/Dropbox_Hello.txt
+
+# -------------------------------------------------
+
+
 RUN cd /usr/local/src/zoo/zoo-project/zoo-services/hello-php/cgi-env/ && \
     cp hello.php /var/www/cgi-bin && \
    cp HelloPHP.zcfg /var/www/cgi-bin

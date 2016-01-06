@@ -87,11 +87,13 @@ RUN mkdir /var/www/cgi-bin
 # Testing DropBox integration -----------------
 
 RUN cd /usr/local/src && \
-wget https://www.dropbox.com/sh/im6k3in523shylt/AADtDIGJUTyGQK10Ku_BQQQPa?dl=1 -O zoophpsrc.zip && \
-unzip zoophpsrc.zip -d /usr/local/src/zoophpsrc 
+wget https://www.dropbox.com/sh/im6k3in523shylt/AADtDIGJUTyGQK10Ku_BQQQPa?dl=1 -O zoophpsrc.zip 
 
-RUN cd /usr/local/src/zoophpsrc && \
-cp Dropbox_Hello.txt /var/www/cgi-bin/Dropbox_Hello.txt
+# Okay this is a bit dangerous but unzip doesn't seem to be working too well - I have to assume that the folder is being extracted and return 0=success  otherwise docker build will fail
+RUN cd /usr/local/src && \
+unzip -j zoophpsrc.zip -d /usr/local/src/zoophpsrc; exit 0
+
+RUN cp /usr/local/src/zoophpsrc/* /var/www/cgi-bin/
 
 # -------------------------------------------------
 

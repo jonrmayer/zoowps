@@ -97,7 +97,7 @@ RUN cp /usr/local/src/zoo/zoo-project/zoo-kernel/zoo_loader.cgi /var/www/cgi-bin
 
 #RUN ln -s investcode /usr/lib/cgi-bin/
 
-COPY zoophpconfig/main.cfg /var/www/cgi-bin/main.cfg
+COPY main.cfg /var/www/cgi-bin/main.cfg
 
 
 #COPY zoowpsconfig/.htaccess /var/www/html/zoo/.htaccess

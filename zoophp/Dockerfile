@@ -20,7 +20,7 @@ cd php-5.5.13 && \
 make
 
 
-RUN cd /usr/local/src && \
+RUN cd /usr/local/src/php-5.5.13 && \
 make install && \
 ldconfig 
 

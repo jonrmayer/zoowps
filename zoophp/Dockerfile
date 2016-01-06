@@ -88,7 +88,7 @@ RUN mkdir /var/www/cgi-bin
 
 RUN cd /usr/local/src && \
 wget https://www.dropbox.com/sh/im6k3in523shylt/AADtDIGJUTyGQK10Ku_BQQQPa?dl=1 -O zoophpsrc.zip && \
-unzip zoophpsrc.zip -d zoophpsrc 
+unzip zoophpsrc.zip -d /usr/local/sr/zoophpsrc 
 
 RUN cd /usr/local/src/zoophpsrc && \
 cp Dropbox_Hello.txt /var/www/cgi-bin/Dropbox_Hello.txt

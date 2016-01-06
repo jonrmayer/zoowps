@@ -63,25 +63,46 @@ RUN echo www-data > /etc/container_environment/APACHE_RUN_GROUP
 RUN echo /var/log/apache2 > /etc/container_environment/APACHE_LOG_DIR
 
 # Activate needed Apache modules 
-RUN a2enmod cgi && a2enmod rewrite
+
+
+RUN  a2enmod fcgid && a2enmod cgid && a2enmod rewrite
+
 
 COPY zoowpsconfig/apache2.conf /etc/apache2/apache2.conf
+COPY zoowpsconfig/serve-cgi-bin.conf /etc/apache2/conf-available/serve-cgi-bin.conf
 
 RUN mkdir /var/www/html/temp
 RUN mkdir /var/www/html/zoo
+RUN mkdir /var/www/cgi-bin
+
+COPY test/* /var/www/cgi-bin
+
 
 ENV investcode 002
-COPY investcode/* /usr/lib/cgi-bin/
+
+
+
+COPY investcode/* /var/www/cgi-bin/
+COPY zoowpsconfig/main.cfg /usr/lib/cgi-bin/main.cfg
+
+RUN cp /usr/local/src/zoo/zoo-project/zoo-kernel/zoo_loader.cgi /var/www/cgi-bin/zoo_loader.cgi
 
 
 #RUN ln -s investcode /usr/lib/cgi-bin/
 
-COPY zoowpsconfig/main.cfg /usr/lib/cgi-bin/main.cfg
+COPY zoowpsconfig/main.cfg /var/www/cgi-bin/main.cfg
+
+
 COPY zoowpsconfig/.htaccess /var/www/html/zoo/.htaccess
 
 RUN chown -R www-data:www-data /var/www/html/temp
 RUN chown -R www-data:www-data /var/www/html/zoo
 RUN chown -R www-data:www-data /usr/lib/cgi-bin
+
+
+RUN chmod 755 /var/www/cgi-bin/*
+
+
 
 RUN mkdir /myvol
 
@@ -91,6 +112,4 @@ EXPOSE 80
    
 # Test Location of xslt -----------------------------------------------------------------------------------------#
 
-#CMD  echo dpkg -L packagename libxslt   
-   
-   
+#CMD  echo dpkg -L packagename libxslt  

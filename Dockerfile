@@ -71,6 +71,8 @@ RUN mkdir /var/www/html/zoo
 ENV investcode 002
 COPY investcode/* /usr/lib/cgi-bin/
 
+COPY util.py /usr/lib/python2.7/ctypes
+
 
 #RUN ln -s investcode /usr/lib/cgi-bin/
 

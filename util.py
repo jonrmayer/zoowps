@@ -169,7 +169,10 @@ elif os.name == "posix":
         def find_library(name):
             ename = re.escape(name)
             expr = r':-l%s\.\S+ => \S*/(lib%s\.\S+)' % (ename, ename)
-            f = os.popen('/sbin/ldconfig -r 2>/dev/null')
+            #Change recommended by Gerald Fenoy for Shapely/Geos Issue
+            import subprocess
+            f = subprocess.Popen('/sbin/ldconfig -p', shell=True, stdout=subprocess.PIPE).stdout
+            #f = os.popen('/sbin/ldconfig -r 2>/dev/null')
             try:
                 data = f.read()
             finally:

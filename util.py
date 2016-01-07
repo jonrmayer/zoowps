@@ -242,7 +242,10 @@ elif os.name == "posix":
 
             # XXX assuming GLIBC's ldconfig (with option -p)
             expr = r'\s+(lib%s\.[^\s]+)\s+\(%s' % (re.escape(name), abi_type)
-            f = os.popen('/sbin/ldconfig -p 2>/dev/null')
+            #Change recommended by Gerald Fenoy for Shapely/Geos Issue
+            import subprocess
+            f = subprocess.Popen('/sbin/ldconfig -p', shell=True, stdout=subprocess.PIPE).stdout
+            #f = os.popen('/sbin/ldconfig -r 2>/dev/null')
             try:
                 data = f.read()
             finally:
